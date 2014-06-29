@@ -215,6 +215,18 @@ class ConvertTest(unittest.TestCase):
         text = "4000"
         self.assertRaises(Exception, convert, text)
  
+    def test_invalid_not_a_number_T1(self):
+        text = "a"
+        self.assertRaises(Exception, convert, text)
+
+    def test_invalid_not_a_number_T2(self):
+        text = "1a"
+        self.assertRaises(Exception, convert, text)
+
+    def test_invalid_not_a_number_T3(self):
+        text = "a1"
+        self.assertRaises(Exception, convert, text)
+
 
 if __name__ == "__main__":
     unittest.main()
