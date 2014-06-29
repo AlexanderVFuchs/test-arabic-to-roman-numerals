@@ -4,7 +4,7 @@ Created on Jun 29, 2014
 @author: alexander
 
 
-Unit tests for the conversion module..
+Unit tests for the conversion module.
 '''
 
 import unittest
@@ -195,6 +195,10 @@ class ConvertTest(unittest.TestCase):
 
     # Test for invalid input
     
+    def test_no_input(self):
+        text = ""
+        self.assertRaises(Exception, convert, text)
+
     def test_invalid_0(self):
         text = "0"
         self.assertRaises(Exception, convert, text)
