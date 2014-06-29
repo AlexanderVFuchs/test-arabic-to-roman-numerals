@@ -38,10 +38,6 @@ Signature:
     :returns: Roman numeral representation of arabic_digit 
     :raises: Exception in case of invalid input.
     """
-    arabic_unit = ""
-    arabic_tens = ""
-    arabic_hundreds = ""
-    arabic_thousands = ""
   
     # determine Roman representation for unit value
     if len(arabic_digit) == 0:
@@ -49,10 +45,21 @@ Signature:
 
     if len(arabic_digit) >= 1:
         arabic_unit = convert_unit(arabic_digit[-1])
+    else:
+        arabic_unit = ""
 
     if len(arabic_digit) >= 2:
         arabic_tens = convert_tens(arabic_digit[-2])
+    else:
+        arabic_tens = ""
     
+    if len(arabic_digit) >= 3:
+        arabic_hundreds = convert_hundreds(arabic_digit[-3])
+    else:
+        arabic_hundreds = ""
+    
+    arabic_thousands = ""
+
     return arabic_thousands + arabic_hundreds + arabic_tens + arabic_unit
 
 
@@ -120,6 +127,39 @@ def convert_tens(arabic_digit):
         return "LXXX"
     elif arabic_digit == "9":
         return "XC"
+    else:
+        raise Exception("Invalid Input: {0}".format(arabic_digit))
+
+
+def convert_hundreds(arabic_digit):
+    """Helper function.
+    
+    Converts the hundreds digit of an arabic value to the roman representation.
+    
+    :param arabic_digit: [0..9]
+    :returns: Roman numeral representation of arabic_digit
+    :raises: Exception in case of invalid input.
+    """
+    if arabic_digit == "0":
+        return ""
+    elif arabic_digit == "1":
+        return "C"
+    elif arabic_digit == "2":
+        return "CC"
+    elif arabic_digit == "3":
+        return "CCC"
+    elif arabic_digit == "4":
+        return "CD"
+    elif arabic_digit == "5":
+        return "D"
+    elif arabic_digit == "6":
+        return "DC"
+    elif arabic_digit == "7":
+        return "DCC"
+    elif arabic_digit == "8":
+        return "DCCC"
+    elif arabic_digit == "9":
+        return "CM"
     else:
         raise Exception("Invalid Input: {0}".format(arabic_digit))
 

@@ -114,6 +114,56 @@ class ConvertTest(unittest.TestCase):
         self.assertEqual(convert(text), expected)
 
 
+    # Tests for a value in [100..999]
+    # the tenths are all special cases,
+    # so we have a test for each
+
+    def test_value_100(self):
+        text = "109"
+        expected = "CIX"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_234(self):
+        text = "234"
+        expected = "CCXXXIV"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_345(self):
+        text = "345"
+        expected = "CCCXLV"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_456(self):
+        text = "456"
+        expected = "CDLVI"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_567(self):
+        text = "567"
+        expected = "DLXVII"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_678(self):
+        text = "678"
+        expected = "DCLXXVIII"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_781(self):
+        text = "781"
+        expected = "DCCLXXXI"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_892(self):
+        text = "892"
+        expected = "DCCCXCII"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_999(self):
+        text = "999"
+        expected = "CMXCIX"
+        self.assertEqual(convert(text), expected)
+
+
 #     def test_max(self):
 #         text = "3999"
 #         expected = "MMMCMXCIX"
