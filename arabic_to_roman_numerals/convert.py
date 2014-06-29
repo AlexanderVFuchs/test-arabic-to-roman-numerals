@@ -4,6 +4,12 @@ Created on Jun 29, 2014
 @author: alexander
 
 Conversion library from arabic to roman numerals.
+
+:TODO:
+- concept for checking valid input:
+  - via exception as currently?
+  - via assertion, with better run-time performance?
+- documentation format and generation: sphinx?
 '''
 
 import re
@@ -35,7 +41,7 @@ to the following "standard" that can be found on wikipedia:
 
 * Only one small-value symbol may be subtracted from any large-value symbol.
 
-Signature:
+    Signature:
     :param arabic_digit: The arabic numeral input string: [1..3999].
         No leading 0 accepted.
     :returns: Roman numeral representation of arabic_digit 
@@ -75,8 +81,9 @@ Signature:
 def convert_unit(arabic_digit):
     """Helper function.
     
-    Converts an arabic unit value to the roman representation.
+    Converts the unit digit of an arabic value to the roman representation.
     
+    Signature:
     :param arabic_digit: arabic unit value: [0..9]
     :returns: Roman numeral representation of arabic_digit.
         Returns the empty string for '0'.
@@ -109,10 +116,12 @@ def convert_unit(arabic_digit):
 def convert_tens(arabic_digit):
     """Helper function.
     
-    Converts the tens digit of an arabic value to the roman representation.
+    Converts the ten digit of an arabic value to the roman representation.
     
+    Signature:
     :param arabic_digit: [0..9]
     :returns: Roman numeral representation of arabic_digit
+        Returns the empty string for '0'.
     :raises: Exception in case of invalid input.
     """
     if arabic_digit == "0":
@@ -142,10 +151,11 @@ def convert_tens(arabic_digit):
 def convert_hundreds(arabic_digit):
     """Helper function.
     
-    Converts the hundreds digit of an arabic value to the roman representation.
+    Converts the hundred digit of an arabic value to the roman representation.
     
     :param arabic_digit: [0..9]
     :returns: Roman numeral representation of arabic_digit
+        Returns the empty string for '0'.
     :raises: Exception in case of invalid input.
     """
     if arabic_digit == "0":

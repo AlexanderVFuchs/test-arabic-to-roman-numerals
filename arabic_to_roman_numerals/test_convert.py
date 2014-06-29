@@ -13,7 +13,6 @@ from arabic_to_roman_numerals.convert import convert
 
 
 class ConvertTest(unittest.TestCase):
-
     # Tests for a value in [1..9] -
     # these are all special cases, so we have a test for each
     
@@ -179,7 +178,8 @@ class ConvertTest(unittest.TestCase):
 
 
     # Tests for some special values
-    
+
+    # this is the maximum value that can be presented in roman    
     def test_max(self):
         text = "3999"
         expected = "MMMCMXCIX"
@@ -193,6 +193,8 @@ class ConvertTest(unittest.TestCase):
         self.assertEqual(convert(text), expected)
 
 
+    # Test for invalid input
+    
     def test_invalid_0(self):
         text = "0"
         self.assertRaises(Exception, convert, text)
