@@ -6,8 +6,10 @@ Created on Jun 29, 2014
 Conversion library from arabic to roman numerals.
 '''
 
+import re
 
-def convert(arabic_digit):
+
+def convert(arabic_numeral):
     """
 Roman numerals
 
@@ -39,23 +41,30 @@ Signature:
     :returns: Roman numeral representation of arabic_digit 
     :raises: Exception in case of invalid input.
     """
-    if len(arabic_digit) >= 1:
-        arabic_unit = convert_unit(arabic_digit[-1])
+    # check pre-condition: range 1-3999
+    if not re.match("[1-3]?[0-9]{0,2}[1-9]", arabic_numeral):
+        raise Exception("Invalid Input: {0}".format(arabic_numeral))
+    # check pre-condition: no leading 0
+    if not re.match("[^0].*", arabic_numeral):
+        raise Exception("Invalid Input: {0}".format(arabic_numeral))
+
+    if len(arabic_numeral) >= 1:
+        arabic_unit = convert_unit(arabic_numeral[-1])
     else:
         arabic_unit = ""
 
-    if len(arabic_digit) >= 2:
-        arabic_tens = convert_tens(arabic_digit[-2])
+    if len(arabic_numeral) >= 2:
+        arabic_tens = convert_tens(arabic_numeral[-2])
     else:
         arabic_tens = ""
     
-    if len(arabic_digit) >= 3:
-        arabic_hundreds = convert_hundreds(arabic_digit[-3])
+    if len(arabic_numeral) >= 3:
+        arabic_hundreds = convert_hundreds(arabic_numeral[-3])
     else:
         arabic_hundreds = ""
     
-    if len(arabic_digit) >= 4:
-        arabic_thousands = convert_thousands(arabic_digit[-4])
+    if len(arabic_numeral) >= 4:
+        arabic_thousands = convert_thousands(arabic_numeral[-4])
     else:
         arabic_thousands = ""
 
