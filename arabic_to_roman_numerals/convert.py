@@ -7,7 +7,7 @@ Conversion library from arabic to roman numerals.
 '''
 
 
-def convert(arabic_numeral):
+def convert(arabic_digit):
     """
 Roman numerals
 
@@ -34,42 +34,92 @@ to the following "standard" that can be found on wikipedia:
 * Only one small-value symbol may be subtracted from any large-value symbol.
 
 Signature:
-    :param arabic_numeral: The arabic numeral input string.
-    :returns: Roman numeral representation of arabic_numeral 
+    :param arabic_digit: The arabic numeral input string: [1..3999].
+    :returns: Roman numeral representation of arabic_digit 
+    :raises: Exception in case of invalid input.
     """
-    
+    arabic_unit = ""
+    arabic_tens = ""
+    arabic_hundreds = ""
+    arabic_thousands = ""
+  
     # determine Roman representation for unit value
-    return convert_unit(arabic_numeral)
+    if len(arabic_digit) == 0:
+        raise Exception("Invalid Input: {0}".format(arabic_digit))
+
+    if len(arabic_digit) >= 1:
+        arabic_unit = convert_unit(arabic_digit[-1])
+
+    if len(arabic_digit) >= 2:
+        arabic_tens = convert_tens(arabic_digit[-2])
+    
+    return arabic_thousands + arabic_hundreds + arabic_tens + arabic_unit
 
 
 
-def convert_unit(arabic_numeral):
+def convert_unit(arabic_digit):
     """Helper function.
     
     Converts an arabic unit value to the roman representation.
     
-    :param arabic_numeral: arabic unit value: [1..9]
-    :returns: Roman numeral representation of arabic_numeral
+    :param arabic_digit: arabic unit value: [0..9]
+    :returns: Roman numeral representation of arabic_digit.
+        Returns the empty string for '0'.
     :raises: Exception in case of invalid input.
     """
-    if arabic_numeral == "1":
+    if arabic_digit == "0":
+        return ""
+    elif arabic_digit == "1":
         return "I"
-    elif arabic_numeral == "2":
+    elif arabic_digit == "2":
         return "II"
-    elif arabic_numeral == "3":
+    elif arabic_digit == "3":
         return "III"
-    elif arabic_numeral == "4":
+    elif arabic_digit == "4":
         return "IV"
-    elif arabic_numeral == "5":
+    elif arabic_digit == "5":
         return "V"
-    elif arabic_numeral == "6":
+    elif arabic_digit == "6":
         return "VI"
-    elif arabic_numeral == "7":
+    elif arabic_digit == "7":
         return "VII"
-    elif arabic_numeral == "8":
+    elif arabic_digit == "8":
         return "VIII"
-    elif arabic_numeral == "9":
+    elif arabic_digit == "9":
         return "IX"
     else:
-        raise Exception("Invalid Input: {0}".format(arabic_numeral))
+        raise Exception("Invalid Input: {0}".format(arabic_digit))
+
+
+def convert_tens(arabic_digit):
+    """Helper function.
+    
+    Converts the tens digit of an arabic value to the roman representation.
+    
+    :param arabic_digit: [0..9]
+    :returns: Roman numeral representation of arabic_digit
+    :raises: Exception in case of invalid input.
+    """
+    if arabic_digit == "0":
+        return ""
+    elif arabic_digit == "1":
+        return "X"
+    elif arabic_digit == "2":
+        return "XX"
+    elif arabic_digit == "3":
+        return "XXX"
+    elif arabic_digit == "4":
+        return "XL"
+    elif arabic_digit == "5":
+        return "L"
+    elif arabic_digit == "6":
+        return "LX"
+    elif arabic_digit == "7":
+        return "LXX"
+    elif arabic_digit == "8":
+        return "LXXX"
+    elif arabic_digit == "9":
+        return "XC"
+    else:
+        raise Exception("Invalid Input: {0}".format(arabic_digit))
 

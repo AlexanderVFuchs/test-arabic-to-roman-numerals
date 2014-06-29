@@ -10,9 +10,9 @@ if __name__ == '__main__':
     """
     Simple demo of module function with one input.
     """
-    arabic_numeral = "1903" 
-    roman_numeral = convert(arabic_numeral)
+    arabic_digit = "1903" 
+    roman_numeral = convert(arabic_digit)
     print("Demo conversion: arabic numeral '{0}'"
           " is converted to roman numeral '{1}'"
-          .format(arabic_numeral, roman_numeral))
+          .format(arabic_digit, roman_numeral))
     
