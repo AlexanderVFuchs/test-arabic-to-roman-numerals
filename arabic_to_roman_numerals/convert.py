@@ -2,6 +2,8 @@
 Created on Jun 29, 2014
 
 @author: alexander
+
+Conversion library from arabic to roman numerals.
 '''
 
 
@@ -35,5 +37,39 @@ Signature:
     :param arabic_numeral: The arabic numeral input string.
     :returns: Roman numeral representation of arabic_numeral 
     """
-    return "1903"
+    
+    # determine Roman representation for unit value
+    return convert_unit(arabic_numeral)
+
+
+
+def convert_unit(arabic_numeral):
+    """Helper function.
+    
+    Converts an arabic unit value to the roman representation.
+    
+    :param arabic_numeral: arabic unit value: [1..9]
+    :returns: Roman numeral representation of arabic_numeral
+    :raises: Exception in case of invalid input.
+    """
+    if arabic_numeral == "1":
+        return "I"
+    elif arabic_numeral == "2":
+        return "II"
+    elif arabic_numeral == "3":
+        return "III"
+    elif arabic_numeral == "4":
+        return "IV"
+    elif arabic_numeral == "5":
+        return "V"
+    elif arabic_numeral == "6":
+        return "VI"
+    elif arabic_numeral == "7":
+        return "VII"
+    elif arabic_numeral == "8":
+        return "VIII"
+    elif arabic_numeral == "9":
+        return "IX"
+    else:
+        raise Exception("Invalid Input: {0}".format(arabic_numeral))
 
