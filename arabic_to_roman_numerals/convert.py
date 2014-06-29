@@ -35,14 +35,10 @@ to the following "standard" that can be found on wikipedia:
 
 Signature:
     :param arabic_digit: The arabic numeral input string: [1..3999].
+        No leading 0 accepted.
     :returns: Roman numeral representation of arabic_digit 
     :raises: Exception in case of invalid input.
     """
-  
-    # determine Roman representation for unit value
-    if len(arabic_digit) == 0:
-        raise Exception("Invalid Input: {0}".format(arabic_digit))
-
     if len(arabic_digit) >= 1:
         arabic_unit = convert_unit(arabic_digit[-1])
     else:
@@ -58,7 +54,10 @@ Signature:
     else:
         arabic_hundreds = ""
     
-    arabic_thousands = ""
+    if len(arabic_digit) >= 4:
+        arabic_thousands = convert_thousands(arabic_digit[-4])
+    else:
+        arabic_thousands = ""
 
     return arabic_thousands + arabic_hundreds + arabic_tens + arabic_unit
 
@@ -160,6 +159,26 @@ def convert_hundreds(arabic_digit):
         return "DCCC"
     elif arabic_digit == "9":
         return "CM"
+    else:
+        raise Exception("Invalid Input: {0}".format(arabic_digit))
+
+
+
+def convert_thousands(arabic_digit):
+    """Helper function.
+    
+    Converts the thousand digit of an arabic value to the roman representation.
+    
+    :param arabic_digit: [1..3]
+    :returns: Roman numeral representation of arabic_digit
+    :raises: Exception in case of invalid input.
+    """
+    if arabic_digit == "1":
+        return "M"
+    elif arabic_digit == "2":
+        return "MM"
+    elif arabic_digit == "3":
+        return "MMM"
     else:
         raise Exception("Invalid Input: {0}".format(arabic_digit))
 

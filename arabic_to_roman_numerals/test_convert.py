@@ -164,17 +164,38 @@ class ConvertTest(unittest.TestCase):
         self.assertEqual(convert(text), expected)
 
 
-#     def test_max(self):
-#         text = "3999"
+    # Tests for a value in [1000..3999]
+
+    def test_value_1000(self):
+        text = "1000"
+        expected = "M"
+        self.assertEqual(convert(text), expected)
+
+    def test_value_2222(self):
+        text = "2222"
+        expected = "MMCCXXII"
+        self.assertEqual(convert(text), expected)
+
+    def test_max(self):
+        text = "3999"
+        expected = "MMMCMXCIX"
+        self.assertEqual(convert(text), expected)
+
+
+    # Tests for special values
+    
+#     def test_0(self):
+#         text = "0"
 #         expected = "MMMCMXCIX"
 #         self.assertEqual(convert(text), expected)
-# 
-#     # test example from specification
-# 
-#     def test_special(self):
-#         text = "1903"
-#         expected = "MCMIII"
-#         self.assertEqual(convert(text), expected)
+
+ 
+    # test example from specification
+ 
+    def test_special(self):
+        text = "1903"
+        expected = "MCMIII"
+        self.assertEqual(convert(text), expected)
 
 
 if __name__ == "__main__":
